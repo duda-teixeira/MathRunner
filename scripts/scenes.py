@@ -15,6 +15,7 @@ PHASES = [
     ("EQUACOES DE 1o GRAU", 8, 24, 0.8, (205, 218, 255)),
     ("DESAFIO MISTURADO", 9, 26, 1.0, (245, 202, 238)),
 ]
+GATE_SPEEDS = [155, 173, 180, 190, 200]
 LEADERBOARD = Path(__file__).resolve().parent.parent / "ranking.json"
 ASSET_DIR = Path(__file__).resolve().parent.parent / "assets"
 
@@ -118,7 +119,7 @@ class Game:
         self.question, self.correct = make_question(self.phase)
         self.choices = make_choices(self.correct)
         self.gates = [AnswerGate(index, answer, -30) for index, answer in enumerate(self.choices)]
-        self.gate_speed = 155 + self.phase * 18
+        self.gate_speed = GATE_SPEEDS[self.phase]
         self.time_limit = PHASES[self.phase][2]
         self.time_left = self.time_limit
         self.question_number += 1
